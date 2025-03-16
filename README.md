@@ -77,7 +77,11 @@ To train ACT:
     --num_epochs 2000  --lr 1e-5 \
     --seed 0
 
-> possible problem: If you encounter error messages during training: "height and width must > 0". Add the statement 'matplotlib.use('Agg')' at the beginning of the 'plot_history' function in the 'imitate_episodes.py' file.
+**Possible Problem**: If you encounter error messages during training: "height and width must > 0". Insert the following statement below line 7 of the 'imitate_episodes.py' file.
+```python
+import matplotlib
+matplotlib.use('Agg')
+```
 
 To evaluate the policy, run the same command but add ``--eval``. This loads the best validation checkpoint.
 The success rate should be around 90% for transfer cube, and around 50% for insertion.
