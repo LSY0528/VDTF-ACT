@@ -59,7 +59,7 @@ To generated 50 episodes of scripted data, run:
 
     python3 record_sim_episodes.py \
     --task_name sim_insertion_scripted \
-    --dataset_dir /home/rcir/act/exp_data/sim_insertion_scripted \
+    --dataset_dir /home/lsy/VDTF-ACT/exp_data/sim_insertion_scripted \
     --num_episodes 50
 
 To can add the flag ``--onscreen_render`` to see real-time rendering.
@@ -72,11 +72,12 @@ To train ACT:
     # Transfer Cube task
     python3 imitate_episodes.py \
     --task_name sim_insertion_scripted \
-    --ckpt_dir /home/rcir/act/ckpt \
+    --ckpt_dir /home/lsy/VDTF-ACT/ckpt \
     --policy_class ACT --kl_weight 10 --chunk_size 100 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 \
     --num_epochs 2000  --lr 1e-5 \
     --seed 0
 
+> possible problem: If you encounter error messages during training: "height and width must > 0". Add the statement 'matplotlib.use('Agg')' at the beginning of the 'plot_history' function in the 'imitate_episodes.py' file.
 
 To evaluate the policy, run the same command but add ``--eval``. This loads the best validation checkpoint.
 The success rate should be around 90% for transfer cube, and around 50% for insertion.
